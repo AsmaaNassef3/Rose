@@ -1,0 +1,92 @@
+/* Force horizontal layout for navbar */
+.navbar {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-start,
+.navbar-center,
+.navbar-end {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+}
+
+/* Force horizontal menu layout */
+.menu-horizontal {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 2rem;
+}
+
+.menu-horizontal li {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.menu-horizontal li a {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.menu-horizontal li a:hover {
+  background-color: hsl(var(--b2));
+  color: hsl(var(--p));
+}
+
+/* Dropdown should be vertical */
+.dropdown-content .menu {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.dropdown-content .menu li {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100%;
+}
+
+.dropdown-content .menu li a {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  width: 100%;
+}
+
+/* Active link styling */
+.active-link {
+  color: hsl(var(--p)) !important;
+  font-weight: 600;
+}
+
+/* Ensure navbar never goes column on desktop */
+@media (min-width: 1024px) {
+  .navbar-center {
+    display: flex !important;
+    flex-direction: row !important;
+  }
+
+  .menu-horizontal {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 2rem;
+  }
+}
+
+/* Mobile layout */
+@media (max-width: 1023px) {
+  .navbar-start {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
+    width: 100%;
+  }
+}

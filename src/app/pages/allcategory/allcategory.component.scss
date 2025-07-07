@@ -1,0 +1,67 @@
+.custom-carousel {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+
+  .carousel-img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 1rem;
+    transition: transform 0.5s ease;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+
+  // Dots styling (like figma)
+  ::ng-deep .owl-dots {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .owl-dot {
+      width: 12px;
+      height: 12px;
+      margin: 0 6px;
+      background-color: #ccc;
+      border-radius: 50%;
+      display: inline-block;
+      transition: all 0.3s ease;
+
+      &.active {
+        background-color: #ff4081; // your figma accent color
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+
+  // Arrows styling
+  ::ng-deep .owl-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+
+    .owl-prev, .owl-next {
+      background-color: rgba(0, 0, 0, 0.3);
+      color: white;
+      font-size: 24px;
+      padding: 8px 16px;
+      border-radius: 50%;
+      transition: background 0.3s;
+
+      &:hover {
+        background-color: #000;
+      }
+    }
+  }
+}
