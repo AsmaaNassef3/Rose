@@ -1,25 +1,87 @@
-<div class="w-full px-4 md:px-10 py-10">
-  <!-- Category cards -->
-  <div class="grid grid-cols-2 md:grid-cols-5 gap-x-32 gap-y-6 max-w-[1200px] mx-auto">
-    @for (category of reversedCategories; track $index) {
-      <div class="bg-[#FEEDF7] rounded-[1.5rem] p-[1rem] flex justify-center items-center mx-auto">
-        <div class="bg-[var(--main-color)] p-[1.5rem] me-[1.5rem] ms-[.5rem] aspect-square w-[90px] rounded-[100%] grid place-items-center">
-          <img [src]="category.image" class="text-white" [alt]="category.name" />
+<section class="mx-3 py-8 flex space-y-8">
+  <app-sidebar></app-sidebar>
+  <div class="flex-1">
+    @if (isLoading$ | async) {
+    <div class="text-center text-gray-500 text-lg">جاري تحميل المنتجات...</div>
+    } @else {
+      @let products = products$ | async;
+      @let totalPages = totalPages$ | async;
+      @let currentPage = currentPage$ | async;
+    @if (products && totalPages !== null && currentPage !== null) {
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (product of products; track product.id) {
+      <div
+        class="product-card bg-white rounded-3xl shadow-xl overflow-hidden transform transition-transform duration-300 hover:scale-102">
+        <div class="relative group">
+          <div
+            class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300 z-10">
+            <div class="flex gap-4">
+              <button class="icon-button bg-white bg-opacity-80">
+                <i class="fas fa-heart text-pink-500 text-xl"></i>
+              </button>
+              <button class="icon-button bg-white bg-opacity-80">
+                <i class="fas fa-shopping-cart text-pink-500 text-xl"></i>
+              </button>
+            </div>
+          </div>
+          <img [src]="product.imgCover" alt="{{ product.title }}"
+            class="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-105" />
         </div>
-        <div class="flex flex-col ms-[1rem]">
-          <h1 class="text-[#160E4B] whitespace-nowrap">{{ category.name }}</h1>
-          <h3 class="text-[#757F95] whitespace-nowrap">{{ category.productsCount }} items</h3>
+        <div class="p-6">
+          <h2 class="text-xl font-bold text-gray-800 truncate mb-2">{{ product.title }}</h2>
+          <div class="flex items-center mb-4">
+            <div class="flex text-yellow-400">
+              <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
+                <i class="fas fa-star" [class.text-gray-300]="i >= product.rateAvg"></i>
+              </ng-container>
+            </div>
+            <span class="text-gray-600 text-sm ml-2">({{ product.rateAvg.toFixed(1) }})</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-baseline gap-2">
+              <span class="text-2xl font-bold text-pink-500">{{ product.priceAfterDiscount / 30 |
+                currency:'USD':'symbol':'1.0-0' }}</span>
+              <span class="text-gray-400 line-through">{{ product.price / 30 | currency:'USD':'symbol':'1.0-0'
+                }}</span>
+            </div>
+            <button class="icon-button bg-pink-100">
+              <i class="fas fa-plus text-pink-500"></i>
+            </button>
+          </div>
         </div>
       </div>
+      }
+    </div>
+
+    <!-- Pagination -->
+   <nav class="flex justify-center mt-16" aria-label="Pagination">
+  <ul class="flex items-center gap-2 text-base bg-white/80 rounded-full px-4 py-2 shadow-md border border-pink-200">
+    <li>
+      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1"
+        class="pagination-arrow bg-pink-100 hover:bg-pink-400 text-pink-500 hover:text-white border-none transition-all duration-200 rounded-full w-10 h-10 flex items-center justify-center shadow">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+    </li>
+    @for (page of getArray(totalPages); track page) {
+    <li>
+      <button (click)="changePage(page)" [ngClass]="{
+            'pagination-active-alt': page === currentPage,
+            'pagination-inactive-alt': page !== currentPage
+          }"
+        class="pagination-number-alt w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all duration-200">
+        {{ page }}
+      </button>
+    </li>
+    }
+    <li>
+      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages"
+        class="pagination-arrow bg-pink-100 hover:bg-pink-400 text-pink-500 hover:text-white border-none transition-all duration-200 rounded-full w-10 h-10 flex items-center justify-center shadow">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </li>
+  </ul>
+</nav>
+    }
     }
   </div>
-
- <div class="custom-carousel">
-  <owl-carousel-o [options]="sliderOptions">
-    <ng-template carouselSlide *ngFor="let img of sliderImages">
-      <img src="/images/Background (5).png" alt="slider" class="carousel-img" />
-    </ng-template>
-  </owl-carousel-o>
-</div>
-
-</div>
+</section>

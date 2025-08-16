@@ -1,0 +1,139 @@
+<div class="max-w-5xl mx-auto p-4">
+  <h1 class="text-3xl font-bold text-pink-500 mb-6 flex items-center gap-2">
+    <i class="fas fa-box"></i>
+    All Orders
+  </h1>
+
+  @for (order of ordersData(); track order._id) {
+    <div class="bg-white shadow-lg rounded-xl p-6 mb-6 border border-pink-200 hover:shadow-xl transition-shadow duration-300">
+      <!-- Header -->
+      <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+        <div>
+          <h2 class="text-xl font-semibold text-gray-800 flex items-center gap-2">
+            <i class="fas fa-receipt text-pink-400"></i>
+            Order #{{ order.orderNumber }}
+          </h2>
+          <p class="text-sm text-gray-500 mt-1">
+            Placed on: {{ order.createdAt | date:'medium' }}
+          </p>
+        </div>
+        <div class="mt-4 md:mt-0 flex flex-col gap-2">
+          <span class="text-gray-700 text-lg">
+            Total: <strong class="text-pink-600 text-xl">${{ order.totalPrice }}</strong>
+          </span>
+          <div class="flex gap-4">
+            <span class="flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium"
+                  [class.bg-green-100]="order.isPaid"
+                  [class.text-green-700]="order.isPaid"
+                  [class.bg-red-100]="!order.isPaid"
+                  [class.text-red-700]="!order.isPaid">
+              <i class="fas"
+                 [class.fa-check-circle]="order.isPaid"
+                 [class.fa-times-circle]="!order.isPaid">
+              </i>
+              {{ order.isPaid ? 'Paid' : 'Unpaid' }}
+            </span>
+            <span class="flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium"
+                  [class.bg-green-100]="order.isDelivered"
+                  [class.text-green-700]="order.isDelivered"
+                  [class.bg-yellow-100]="!order.isDelivered"
+                  [class.text-yellow-700]="!order.isDelivered">
+              <i class="fas"
+                 [class.fa-shipping-fast]="order.isDelivered"
+                 [class.fa-hourglass-half]="!order.isDelivered">
+              </i>
+              {{ order.isDelivered ? 'Delivered' : 'In Progress' }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Items -->
+      <div class="mt-6 border-t border-gray-200 pt-6">
+        <h3 class="text-lg font-semibold text-gray-700 mb-4 flex items-center gap-2">
+          <i class="fas fa-shopping-bag text-pink-400"></i>
+          Order Items ({{ order.orderItems.length }})
+        </h3>
+        
+        <!-- Grid Layout for Products - 2 per row -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          @for (item of visibleItems(order); track item._id) {
+            <div class="bg-gradient-to-br from-pink-50 to-white p-4 rounded-lg border border-pink-100 hover:shadow-md transition-all duration-300 hover:border-pink-200">
+              <div class="flex items-center gap-4">
+                <div class="relative">
+                  <img [src]="item.product.imgCover"
+                       alt="{{ item.product.title }}"
+                       class="w-20 h-20 rounded-lg object-cover border-2 border-pink-200 shadow-sm" />
+                  <div class="absolute -top-2 -right-2 bg-pink-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+                    {{ item.quantity }}
+                  </div>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h4 class="font-semibold text-gray-800 text-base mb-1 truncate">
+                    {{ item.product.title }}
+                  </h4>
+                  <div class="flex flex-col gap-1">
+                    <span class="text-sm text-gray-600">
+                      <i class="fas fa-tag text-pink-400 mr-1"></i>
+                      Price: <span class="font-semibold text-pink-600">${{ item.price }}</span>
+                    </span>
+                    <span class="text-sm text-gray-600">
+                      <i class="fas fa-calculator text-pink-400 mr-1"></i>
+                      Subtotal: <span class="font-semibold text-gray-700">${{ (item.price * item.quantity)  }}</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+
+        @if (order.orderItems.length > 2) {
+          <div class="mt-6 text-center">
+            <button class="inline-flex items-center gap-2 px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition-colors duration-200"
+                    (click)="toggleDetails(order._id)">
+              <i class="fas"
+                 [class.fa-chevron-up]="showDetails()[order._id]"
+                 [class.fa-chevron-down]="!showDetails()[order._id]">
+              </i>
+              {{ showDetails()[order._id] ? 'Show Less Items' : 'Show All Items' }}
+            </button>
+          </div>
+        }
+      </div>
+
+      <!-- Order Info -->
+      <div class="mt-6 border-t border-gray-200 pt-6">
+        <h3 class="text-lg font-semibold text-gray-700 mb-4 flex items-center gap-2">
+          <i class="fas fa-info-circle text-pink-400"></i>
+          Order Information
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-gray-50 p-3 rounded-lg">
+            <div class="flex items-center gap-2 text-sm text-gray-600">
+              <i class="fas fa-map-marker-alt text-pink-400"></i>
+              <span class="font-medium">State:</span>
+            </div>
+            <p class="text-gray-800 font-semibold mt-1">{{ order.state }}</p>
+          </div>
+          
+          <div class="bg-gray-50 p-3 rounded-lg">
+            <div class="flex items-center gap-2 text-sm text-gray-600">
+              <i class="fas fa-calendar text-pink-400"></i>
+              <span class="font-medium">Last Updated:</span>
+            </div>
+            <p class="text-gray-800 font-semibold mt-1">{{ order.updatedAt | date:'short' }}</p>
+          </div>
+          
+          <div class="bg-gray-50 p-3 rounded-lg">
+            <div class="flex items-center gap-2 text-sm text-gray-600">
+              <i class="fas fa-user text-pink-400"></i>
+              <span class="font-medium">Customer:</span>
+            </div>
+            <p class="text-gray-800 font-semibold mt-1">{{ order.user }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

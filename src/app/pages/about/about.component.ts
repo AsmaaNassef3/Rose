@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import { LyersComponent } from "../../shared/ui/lyers/lyers.component";
+import { CustomerComponent } from "../../shared/ui/customer/customer.component";
 
 @Component({
   selector: 'app-about',
-  imports: [],
+  standalone: true,
+  imports: [LyersComponent, CustomerComponent],
   templateUrl: './about.component.html',
-  styleUrl: './about.component.scss'
+  styleUrls: ['./about.component.scss']
 })
 export class AboutComponent {
 

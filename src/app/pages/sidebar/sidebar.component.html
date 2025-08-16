@@ -1,0 +1,61 @@
+<aside id="logo-sidebar"
+  class="left-0 w-72 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-pink-200 sm:translate-x-0 dark:bg-gray-900 dark:border-gray-700"
+  aria-label="Sidebar">
+  <div class="h-full px-4 pb-4 bg-white dark:bg-gray-900">
+    <div class="space-y-6 font-medium">
+
+      <!-- Search Card -->
+      <div class="card-container shadow-lg">
+        <h1 class="text-2xl font-extrabold text-pink-600 mb-5 tracking-tight">Search</h1>
+        <form [formGroup]="searchForm">
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+              <i class="fas fa-search text-pink-400 fa-lg"></i>
+            </div>
+            <input type="search" id="sidebar-search" formControlName="search"
+              class="search-input block w-full pl-12 pr-4 py-3 text-base font-semibold text-pink-700 placeholder-pink-400 focus:ring-2 focus:ring-pink-300 transition-all duration-300"
+              placeholder="Find your treasure..." />
+          </div>
+        </form>
+      </div>
+
+      <!-- Categories Card -->
+      <div class="card-container shadow-lg">
+        <h1 class="text-2xl font-extrabold text-pink-600 mb-5 tracking-tight">Categories</h1>
+        <div class="space-y-2 max-h-64 overflow-y-auto pr-2 custom-scrollbar">
+          @for (cat of categories; track cat._id) {
+          <label class="flex items-center justify-between checkbox-label cursor-pointer">
+            <div class="flex items-center space-x-4">
+              <input type="checkbox" [checked]="categoriesSelected.includes(cat._id)" (change)="handleCategoryChange($event, cat._id)"
+                class="form-checkbox h-5 w-5 text-pink-500 border-gray-300 rounded-md focus:ring-2 focus:ring-pink-400 dark:bg-gray-700 dark:border-gray-600 transition-all duration-300" />
+              <span class="capitalize font-medium">{{ cat.category }}</span>
+            </div>
+            <span class="px-2.5 py-1 text-xs font-semibold text-pink-800 bg-pink-200 dark:bg-pink-900 dark:text-pink-200 rounded-full">{{ cat.productCount }}</span>
+          </label>
+          }
+        </div>
+      </div>
+
+      <!-- Price Range Card -->
+      <div class="card-container bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-200 dark:border-gray-700 p-5">
+        <h1 class="text-xl font-bold text-gray-800 dark:text-white mb-4">Price Filter</h1>
+        <form [formGroup]="priceForm">
+          <div class="mb-4 text-center text-lg font-semibold text-gray-800 dark:text-white">
+            Max Price: <span class="font-bold text-pink-500">{{ priceForm.get('max')?.value | currency:'USD':'symbol':'1.0-0' }}</span>
+          </div>
+          <input type="range" min="0" max="100" step="1" formControlName="max"
+            class="w-full h-2.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-pink-500 dark:bg-gray-700 price-range" />
+        </form>
+      </div>
+
+    </div>
+  </div>
+</aside>
+
+<!-- Mobile toggle button -->
+<button (click)="toggleSidebar()" data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar"
+  aria-controls="logo-sidebar" type="button"
+  class="fixed top-5 left-5 z-50 inline-flex items-center p-3 text-sm text-gray-500 rounded-full sm:hidden bg-white shadow-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-pink-200 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+  <span class="sr-only">Toggle sidebar</span>
+  <i class="fas fa-bars w-6 h-6"></i>
+</button>

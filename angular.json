@@ -40,9 +40,13 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/owl.carousel/dist/assets/owl.carousel.css",
+  "node_modules/owl.carousel/dist/assets/owl.theme.default.css", "node_modules/leaflet/dist/leaflet.css",
+   "node_modules/ngx-toastr/toastr.css", "node_modules/ngx-spinner/animations/ball-spin-clockwise-fade-rotating.css"
             ],
-            "scripts": ["node_modules/flowbite/dist/flowbite.min.js" ],
+            "scripts": ["node_modules/flowbite/dist/flowbite.min.js","node_modules/leaflet/dist/leaflet.js" ,"node_modules/jquery/dist/jquery.min.js",
+  "node_modules/owl.carousel/dist/owl.carousel.min.js"],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {

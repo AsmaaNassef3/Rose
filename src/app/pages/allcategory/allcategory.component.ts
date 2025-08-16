@@ -1,60 +1,58 @@
-import { Component, OnInit, inject, signal, WritableSignal } from '@angular/core';
-import { CategoriesService } from '../../core/services/categories/categories.service';
-import { Category } from '../../shared/interfaces/categories/categories';
-import { CarouselModule } from 'ngx-owl-carousel-o';
-import { CommonModule } from '@angular/common';
-
+import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule, CurrencyPipe } from '@angular/common';
+import { Store } from '@ngrx/store';
+import {
+  selectAllProducts,
+  selectIsLoading,
+  selectCurrentPage,
+  selectTotalPages,
+  selectSearchTerm
+} from '../../store/products/product.selector';
+import { loadProducts, updateSearchTerm } from '../../store/products/products.actions';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-allcategory',
   standalone: true,
-  imports: [CommonModule, CarouselModule],
+  imports: [CommonModule, SidebarComponent, CurrencyPipe],
   templateUrl: './allcategory.component.html',
-  styleUrls: ['./allcategory.component.scss']
 })
 export class AllcategoryComponent implements OnInit {
-  sliderImages = [
-    '/assets/images/slide-1.png',
-    '/assets/images/slide-2.png',
-    '/assets/images/slide-3.png',
-    '/assets/images/slide-4.png'
-  ];
+  private store = inject(Store);
 
-  sliderOptions = {
-    loop: true,
-    margin: 16,
-    nav: true,
-    dots: true,
-    autoplay: true,
-    autoplayTimeout: 3000,
-    autoplayHoverPause: true,
-    responsive: {
-      0: { items: 1 },
-      768: { items: 1 },
-      1024: { items: 1 }
-    }
-  };
+  products$     = this.store.select(selectAllProducts);
+  isLoading$    = this.store.select(selectIsLoading);
+  currentPage$  = this.store.select(selectCurrentPage);
+  totalPages$   = this.store.select(selectTotalPages);
+  searchTerm$   = this.store.select(selectSearchTerm);
+
+  ngOnInit(): void {
   
-
-  private readonly categoriesService = inject(CategoriesService);
-  categoryData: WritableSignal<Category[]> = signal([]);
-
-  get reversedCategories(): Category[] {
-    return this.categoryData().slice().reverse().slice(0, 5);
+    this.searchTerm$.pipe(take(1)).subscribe(search => {
+      this.store.dispatch(loadProducts({ page: 1 }));
+    });
   }
 
-  getAllCategories() {
-    this.categoriesService.getAllCategories().subscribe({
-      next: (res) => {
-        this.categoryData.set(res.categories);
-      },
-      error: (error) => {
-        console.error('Error fetching categories:', error);
+  changePage(page: number): void {
+    if (page < 1) return;
+
+    this.totalPages$.pipe(take(1)).subscribe(total => {
+      if (page <= total) {
+     
+        this.searchTerm$.pipe(take(1)).subscribe(search => {
+          if (search && search.trim() !== '') {
+            this.store.dispatch(updateSearchTerm({ searchTerm: search, page }));
+          } else {
+            this.store.dispatch(loadProducts({ page }));
+          }
+        });
       }
     });
   }
 
-  ngOnInit(): void {
-    this.getAllCategories();
+  getArray(totalPages: number): number[] {
+    const limit = Math.min(totalPages, 10);
+    return Array.from({ length: limit }, (_, i) => i + 1);
   }
 }

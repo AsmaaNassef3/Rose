@@ -14,4 +14,11 @@ export class CategoriesService {
     return this.httpClient.get<ICategoriesResponse>(`${environment.baseUrl}api/v1/categories`);
   }
 
+  getCategoriesWithProductCount(): Observable<any> {
+    return this.httpClient.get<any>(`${environment.baseUrl}products/count-by-category`);
+  }
+  DleteMyAccount(): Observable<any> {
+    return this.httpClient.delete<any>(`${environment.baseUrl}api/v1/auth/deleteMe`);
+
+}
 }

@@ -1,1 +1,350 @@
-<p>home works!</p>
+<div class="w-full bg-white py-10">
+  <div class="container mx-auto ">
+    <!-- Category Cards -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+      @for (category of reversedCategories; track $index) {
+        <div class="bg-[#FEEDF7] rounded-[1.5rem] p-3 flex items-center gap-2">
+          <!-- Icon circle -->
+          <div class="bg-[#ec4899] rounded-[50%] text-white w-[70px] h-[70px] sm:w-[80px] sm:h-[80px] md:w-[90px] md:h-[90px] rounded-full flex items-center justify-center">
+            <img [src]="category.image" class="w-[30px] sm:w-[35px] md:w-[40px] filter brightness-0 invert" [alt]="category.name" />
+          </div>
+          <!-- Text -->
+          <div class="flex flex-col">
+            <h1 class="text-[#160E4B] text-sm sm:text-base whitespace-nowrap">{{ category.name }}</h1>
+            <h3 class="text-[#757F95] text-xs sm:text-sm whitespace-nowrap">{{ category.productsCount }} items</h3>
+          </div>
+        </div>
+      }
+    </div>
+    <!-- Carousel -->
+    <div class="mt-20">
+      <div class="flex w-full h-[340px] md:h-[420px] gap-3 md:gap-6 flex-col md:flex-row">
+        <div class="relative w-full md:w-[20%] min-w-[120px] h-[180px] md:h-full flex-shrink-0">
+          <img src="/images/Red christmas gifts with white ribbon.png" alt="Christmas Gifts"
+            class="w-full h-full object-cover rounded-[1.5rem] md:rounded-l-xl md:rounded-r-none shadow-lg" />
+          <div class="absolute inset-0 flex flex-col items-center justify-center rounded-xl md:rounded-l-xl md:rounded-r-none">
+            <h3 class="text-pink-600 text-lg md:text-xs pb-3 font-extrabold drop-shadow-lg text-start">START $10.00</h3>
+            <span class="text-black text-lg md:text-2xl pt-20 font-extrabold drop-shadow-lg text-center">Special Perfect Gifts From Us</span>
+          </div>
+          <button
+            class="absolute bottom-4 right-4 md:right-9 md:bottom-6 bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-full shadow-lg text-base md:text-lg  rounded-[5px] transition-all duration-1300 animate-bounce"
+            style="z-index:2;">
+            Shop Now
+          </button>
+        </div>
+        <div class="w-full md:w-[78%] h-[180px] md:h-full flex-shrink-0">
+          <img src="/images/Background (5).png" alt="Background"
+            class="w-full h-full object-cover rounded-xl rounded-[1.5rem] md:rounded-r-xl md:rounded-l-none shadow-lg" />
+        </div>
+      </div>
+    </div>
+    <div class="mt-5 w-full">
+      <div class="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 gap-10 w-full">
+        <img src="/images/Frame 59.png" alt="Frame 59"
+          class="w-full aspect-[411/272] object-cover rounded-none sm:rounded-none md:rounded-none shadow-none" />
+        <img src="/images/Frame 56.png" alt="Frame 56"
+          class="w-full aspect-[411/272] object-cover rounded-none sm:rounded-none md:rounded-none shadow-none" />
+        <img src="/images/Frame 60.png" alt="Frame 60"
+          class="w-full aspect-[411/272] object-cover rounded-none sm:rounded-none md:rounded-none shadow-none" />
+      </div>
+    </div>
+
+    <!-- Free Delivery Feature Cards -->
+    <div class="w-screen max-w-none px-0 left-1/2 right-1/2 -translate-x-1/2 relative mt-20 ">
+      <div class="mx-auto w-full max-w-7xl px-2">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 bg-[#fce7f3] rounded-[1.5rem] rounded-2xl">
+         
+            <div class="bg-[#FEEDF7] rounded-[1.5rem] p-5 flex items-center gap-4">
+              <div class="bg-[#ec4899] text-2xl text-white w-[60px] rounded-[50%] h-[60px] sm:w-[70px] sm:h-[70px] md:w-[80px] md:h-[80px] rounded-full flex items-center justify-center">
+              
+                 <i class="fa-solid fa-truck"></i>
+         
+         
+              </div>
+              <div class="flex flex-col">
+                <h1 class="text-[#160E4B] text-sm sm:text-base whitespace-nowrap">Free Delivery</h1>
+                <h3 class="text-[#757F95] text-xs sm:text-sm whitespace-nowrap">Lorem ipsum amet.</h3>
+              </div>
+            </div>
+
+             <div class="bg-[#FEEDF7] rounded-[1.5rem] p-5 flex items-center gap-4">
+              <div class="bg-[#ec4899] text-2xl text-white w-[60px] rounded-[50%] h-[60px] sm:w-[70px] sm:h-[70px] md:w-[80px] md:h-[80px] rounded-full flex items-center justify-center">
+          <i class="fa-solid fa-pen-nib"></i>
+              </div>
+              <div class="flex flex-col">
+                <h1 class="text-[#160E4B] text-sm sm:text-base whitespace-nowrap">Free Delivery</h1>
+                <h3 class="text-[#757F95] text-xs sm:text-sm whitespace-nowrap">Lorem ipsum amet.</h3>
+              </div>
+            </div>
+
+             <div class="bg-[#FEEDF7] rounded-[1.5rem] p-5 flex items-center gap-4">
+              <div class="bg-[#ec4899] text-2xl text-white w-[60px] rounded-[50%] h-[60px] sm:w-[70px] sm:h-[70px] md:w-[80px] md:h-[80px] rounded-full flex items-center justify-center">
+              <i class="fa-solid fa-image"></i>
+              </div>
+              <div class="flex flex-col">
+                <h1 class="text-[#160E4B] text-sm sm:text-base whitespace-nowrap">Free Delivery</h1>
+                <h3 class="text-[#757F95] text-xs sm:text-sm whitespace-nowrap">Lorem ipsum amet.</h3>
+              </div>
+            </div>
+             <div class="bg-[#FEEDF7] rounded-[1.5rem] p-5 flex items-center gap-4">
+              <div class="bg-[#ec4899] text-2xl text-white w-[60px] rounded-[50%] h-[60px] sm:w-[70px] sm:h-[70px] md:w-[80px] md:h-[80px] rounded-full flex items-center justify-center">
+              <i class="fa-solid fa-hand-holding-heart"></i>
+              </div>
+              <div class="flex flex-col">
+                <h1 class="text-[#160E4B] text-sm sm:text-base whitespace-nowrap">Free Delivery</h1>
+                <h3 class="text-[#757F95] text-xs sm:text-sm whitespace-nowrap">Lorem ipsum amet.</h3>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+<div class="mx-auto px-2 py-10 mt-10 flex flex-col lg:flex-row gap-4 items-start">
+  <!-- Left Static Content - 1/4 -->
+  <div class="lg:w-1/4 w-full">
+    <h4 class="text-pink-600 uppercase font-bold tracking-widest mb-2">Premium Gifts</h4>
+    <h2 class="text-2xl lg:text-3xl font-bold mb-4 text-gray-900">
+      Pest <span class="text-pink-600">Seller</span> <span class="text-pink-600">Gifts</span>
+    </h2>
+    <p class="text-gray-500 mb-4 text-sm leading-relaxed"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, harum.Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio eligendi, et officia ullam dolorum necessitatibus repellat enim dolores commodi porro!lorem10
+      Recusandae tempora aut laborum molestias veniam accusamus voluptas eos ab.
+    </p>
+    <button class="bg-pink-600 text-white px-5 py-2 rounded-full hover:bg-pink-700 transition text-sm">
+      Explore More →
+    </button>
+  </div>
+  <!-- Carousel Section - 3/4 -->
+  <div class="lg:w-3/4 w-full">
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide *ngFor="let product of pestSeller()">
+        <div class="bg-white rounded-2xl gap-5 shadow-xl overflow-hidden max-w-[320px] mx-auto group transition-all duration-300 hover:scale-105 hover:shadow-2xl relative">
+          <!-- Category badge
+          <span class="absolute top-4 left-4 z-10 bg-pink-100 text-pink-600 text-xs font-bold px-3 py-1 rounded-full shadow-sm animate-fade-in">
+            <i class="fa fa-tag mr-1 text-pink-400"></i>
+            {{ product.category }}
+          </span> -->
+          <!-- Product image -->
+          <div class="relative">
+            <img [src]="product.imgCover" alt="Product Image"
+              class="w-full  rounded-[1rem] h-60 object-cover rounded-t-2xl transition-transform duration-300 group-hover:scale-105" />
+            <!-- Discount badge -->
+            <span *ngIf="product.discount" class="absolute top-4 right-4 bg-pink-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow animate-bounce">
+              -{{ product.discount }}%
+            </span>
+          </div>
+          <div class="p-4 flex flex-col flex-1">
+            <h3 class="text-lg font-bold text-gray-900 truncate mb-1">{{ product.title }}</h3>
+          <p class="text-gray-600 text-sm mb-2">
+  {{ product.description.slice(0, 30) }}{{ product.description.length > 30 ? '...' : '' }}
+</p>
+
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-pink-600 font-semibold text-base">{{ product.priceAfterDiscount }} EGP</span>
+              <span *ngIf="product.priceAfterDiscount < product.price" class="text-gray-400 line-through text-xs">{{ product.price }} EGP</span>
+            </div>
+            <!-- Rating with animated pink stars -->
+            <div class="flex gap-1 items-center mt-auto">
+              <ng-container *ngFor="let i of [0,1,2,3,4]">
+                <i class="fa fa-star transition-all duration-200"
+                   [ngClass]="{
+                     'text-pink-400 scale-110 drop-shadow-pink': i < product.rateAvg,
+                     'text-gray-300': i >= product.rateAvg
+                   }"></i>
+              </ng-container>
+              <span class="ml-2 text-xs text-pink-400 font-semibold animate-fade-in">
+                {{ product.rateAvg.toFixed(1) }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+
+
+
+
+
+
+</div>
+
+ <h1 class="text-2xl lg:text-3xl font-bold mb-4 text-gray-900">
+      Popular<span class="text-pink-600">items..</span>
+    </h1>
+
+<div class="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
+  @for (product of popularItems(); track product._id) {
+    <div class="bg-white rounded-2xl gap-5 shadow-xl overflow-hidden max-w-[320px] mx-auto group transition-all duration-300 hover:scale-105 hover:shadow-2xl relative">
+
+      <!-- Category badge -->
+      <span class="absolute top-4 left-4 z-10 bg-pink-100 text-pink-600 text-xs font-bold px-3 py-1 rounded-full shadow-sm animate-fade-in">
+        <i class="fa fa-tag mr-1 text-pink-400"></i>
+        {{ product.quantity === 0 ? 'Sold Out' : (product.quantity < 5 ? 'Few Left' : 'In Stock') }}
+      </span>
+
+      <!-- Product image with hover layer -->
+      <div class="relative group overflow-hidden rounded-t-2xl">
+        <img [src]="product.imgCover" alt="Product Image"
+          class="w-full h-60 object-cover rounded-t-2xl transition-transform duration-300 group-hover:scale-105" />
+
+        <!-- Eye icon in top right -->
+        <button type="submit" [routerLink]="['/details', product._id]" class="absolute top-4 radius-[50%] right-4 z-20 bg-white/80 hover:bg-pink-100 text-pink-500 rounded-full p-2 shadow transition-all duration-200">
+          <i class="fas fa-eye"></i>
+        </button>
+        <!-- Hover overlay centered -->
+        <div
+          class="absolute bottom-0 left-0 w-full h-full bg-pink-500/70 flex items-center justify-center opacity-0 group-hover:opacity-80 group-hover:translate-y-0 translate-y-full transition-all duration-200 ease-in-out backdrop-blur-sm shadow-inner">
+          <div class="flex gap-6">
+            <button  class="text-white text-3xl hover:scale-110 transition-transform duration-300">
+              <i class="fas fa-heart"></i>
+            </button>
+            <button (click)="AddToCart(product._id, 1)" class="text-white text-3xl hover:scale-110 transition-transform duration-300">
+              <i class="fas fa-cart-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product content -->
+      <div class="p-4 flex flex-col flex-1">
+        <h3 class="text-lg font-bold text-gray-900 truncate mb-1">{{ product.title }}</h3>
+        <p class="text-gray-600 text-sm mb-2">
+          {{ product.description.slice(0, 30) }}{{ product.description.length > 30 ? '...' : '' }}
+        </p>
+
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-pink-600 font-semibold text-base">{{ product.priceAfterDiscount }} EGP</span>
+          <span *ngIf="product.priceAfterDiscount < product.price" class="text-gray-400 line-through text-xs">
+            {{ product.price }} EGP
+          </span>
+        </div>
+
+        <!-- Rating -->
+        <div class="flex gap-1 items-center mt-auto">
+          <ng-container *ngFor="let i of [0,1,2,3,4]">
+            <i class="fa fa-star transition-all duration-200"
+              [ngClass]="{
+                'text-pink-400 scale-110 drop-shadow-pink': i < product.rateAvg,
+                'text-gray-300': i >= product.rateAvg
+              }"></i>
+          </ng-container>
+          <span class="ml-2 text-xs text-pink-400 font-semibold animate-fade-in">
+            {{ product.rateAvg.toFixed(1) }}
+          </span>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
+<app-lyers></app-lyers>
+
+
+<section class="  md:px-8 lg:px-16 bg-white">
+  <div class="text-center mb-10">
+    <span class="text-pink-500 font-bold uppercase tracking-widest text-sm">Our Gallery</span>
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2">
+      Let's Check Our <span class="text-purple-600">Photo Gallery</span>
+    </h2>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <div class="overflow-hidden rounded-2xl">
+      <img src="/images/Frame 75.png" alt="Gallery 1" class="w-full h-full object-cover">
+    </div>
+    <div class="overflow-hidden rounded-2xl">
+      <img src="/images/Frame 76.png" alt="Gallery 2" class="w-full h-full object-cover">
+    </div>
+    <div class="overflow-hidden rounded-2xl">
+      <img src="/images/Frame 74.png" alt="Gallery 3" class="w-full h-full object-cover">
+    </div>
+    
+
+    <div class="col-span-2 overflow-hidden rounded-2xl">
+      <img src="/images/Frame 77.png" alt="Gallery 4" class="w-full h-full object-cover">
+    </div>
+
+    <div class="overflow-hidden rounded-2xl">
+      <img src="/images/Frame 78.png" alt="Gallery 5" class="w-full h-full object-cover">
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS SECTION -->
+<app-customer></app-customer>
+
+
+<!-- TRUSTED BY COMPANIES SECTION WITH ICONS -->
+<section class="py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 lg:px-16">
+    <div class="container mx-auto max-w-7xl">
+        
+        <!-- Main Container with Pink Background -->
+        <div class="bg-gradient-to-r from-pink-100 to-pink-200 rounded-[20px] sm:rounded-[25px] lg:rounded-[30px] py-8 sm:py-10 md:py-12 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            
+            <!-- Header Text -->
+            <div class="text-center mb-8 sm:mb-10 md:mb-12">
+                <h2 class="text-xl sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl font-bold text-gray-800 mb-2 leading-tight">
+                    Trusted By Over <span class="text-pink-600">4.5k+</span> Companies
+                </h2>
+            </div>
+
+            <!-- Logos Grid with Icons -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 items-center justify-items-center">
+                
+                <!-- Logo 1 -->
+                <div class="flex items-center justify-center p-2 hover:scale-105 transition-transform duration-300">
+                    <img src="/images/image 36.png" 
+                         alt="Company Logo 1" 
+                         class="w-20 h-20 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-17 lg:h-17 xl:w-20 xl:h-20 rounded object-contain opacity-80 hover:opacity-100 transition-opacity duration-300">
+                </div>
+                   
+                <!-- Logo 2 -->
+                <div class="flex items-center justify-center p-2 hover:scale-105 transition-transform duration-300">
+                    <img src="/images/image 37.png" 
+                         alt="Company Logo 2" 
+                         class="w-20 h-20 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-17 lg:h-17 xl:w-20 xl:h-20 rounded object-contain opacity-80 hover:opacity-100 transition-opacity duration-300">
+                </div>
+                   
+                <!-- Logo 3 -->
+                <div class="flex items-center justify-center p-2 hover:scale-105 transition-transform duration-300">
+                    <img src="/images/image 38.png" 
+                         alt="Company Logo 3" 
+                         class="w-20 h-20 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-17 lg:h-17 xl:w-20 xl:h-20 rounded object-contain opacity-80 hover:opacity-100 transition-opacity duration-300">
+                </div>
+             
+                <!-- Logo 4 -->
+                <div class="flex items-center justify-center p-2 hover:scale-105 transition-transform duration-300">
+                    <img src="/images/image 39.png" 
+                         alt="Company Logo 4" 
+                         class="w-20 h-20 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-17 lg:h-17 xl:w-20 xl:h-20 rounded object-contain opacity-80 hover:opacity-100 transition-opacity duration-300">
+                </div> 
+                
+                <!-- Logo 5 -->
+                <div class="flex items-center justify-center p-2 hover:scale-105 transition-transform duration-300">
+                    <img src="/images/image 40.png" 
+                         alt="Company Logo 5" 
+                         class="w-20 h-20 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-17 lg:h-17 xl:w-20 xl:h-20 rounded object-contain opacity-80 hover:opacity-100 transition-opacity duration-300">
+                </div>
+                
+                <!-- Logo 6 -->      
+                <div class="flex items-center justify-center p-2 hover:scale-105 transition-transform duration-300">
+                    <img src="/images/image 41.png" 
+                         alt="Company Logo 6" 
+                         class="w-36 h-20 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-17 lg:h-17 xl:w-20 xl:h-20 rounded object-contain opacity-80 hover:opacity-100 transition-opacity duration-300">
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+</section>
+
+
+
+
+
+  </div>

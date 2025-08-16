@@ -1,67 +1,144 @@
-.custom-carousel {
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  border-radius: 1.5rem;
+::ng-deep section {
+  background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+  min-height: 100vh;
+  padding-bottom: 3rem;
+}
+
+// Product card with glassmorphism and layered effect
+::ng-deep .product-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(236, 72, 153, 0.15), 0 1.5px 8px rgba(0,0,0,0.08);
+  border: 1.5px solid rgba(236, 72, 153, 0.13);
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.25s;
+  position: relative;
 
-  .carousel-img {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    border-radius: 1rem;
-    transition: transform 0.5s ease;
-
-    &:hover {
-      transform: scale(1.03);
-    }
+  &:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 16px 40px 0 rgba(236, 72, 153, 0.22), 0 2px 12px rgba(0,0,0,0.10);
+    border-color: #ec4899;
   }
+}
 
-  // Dots styling (like figma)
-  ::ng-deep .owl-dots {
-    position: absolute;
-    bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
+// Card image hover overlay
+::ng-deep .product-card .group:hover .absolute {
+  background: linear-gradient(135deg, rgba(236,72,153,0.18) 0%, rgba(249,168,212,0.18) 100%);
+}
 
-    .owl-dot {
-      width: 12px;
-      height: 12px;
-      margin: 0 6px;
-      background-color: #ccc;
-      border-radius: 50%;
-      display: inline-block;
-      transition: all 0.3s ease;
+// Icon button with baby pink gradient and shadow
+::ng-deep .icon-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fce7f3 0%, #f9a8d4 100%);
+  box-shadow: 0 4px 16px rgba(236, 72, 153, 0.13);
+  transition: all 0.22s cubic-bezier(.4,2,.6,1);
+  border: none;
 
-      &.active {
-        background-color: #ff4081; // your figma accent color
-        width: 14px;
-        height: 14px;
-      }
-    }
+  &:hover {
+    transform: scale(1.13) rotate(-6deg);
+    background: linear-gradient(135deg, #f9a8d4 0%, #f472b6 100%);
+    box-shadow: 0 8px 24px rgba(236, 72, 153, 0.18);
   }
+}
 
-  // Arrows styling
-  ::ng-deep .owl-nav {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
+// Style all icons inside icon-button
+::ng-deep .icon-button i {
+  color: #ec4899 !important;
+  font-size: 1.4rem;
+  filter: drop-shadow(0 1px 2px #f9a8d4);
+  transition: color 0.18s;
+}
 
-    .owl-prev, .owl-next {
-      background-color: rgba(0, 0, 0, 0.3);
-      color: white;
-      font-size: 24px;
-      padding: 8px 16px;
-      border-radius: 50%;
-      transition: background 0.3s;
+// Plus icon special style
+::ng-deep .icon-button.bg-pink-100 i.fa-plus {
+  color: #fff !important;
+  background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+  border-radius: 50%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(236, 72, 153, 0.18);
+}
 
-      &:hover {
-        background-color: #000;
-      }
-    }
+// Heart and cart icon hover
+::ng-deep .icon-button:hover i.fa-heart,
+::ng-deep .icon-button:hover i.fa-shopping-cart {
+  color: #fff !important;
+}
+
+// Product title and price
+::ng-deep .product-card h2 {
+  color: #ec4899;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+::ng-deep .product-card .text-pink-500 {
+  color: #ec4899 !important;
+}
+
+// Rating stars
+::ng-deep .product-card .fa-star {
+  color: #fbbf24;
+  filter: drop-shadow(0 1px 2px #f9a8d4);
+  font-size: 1.1rem;
+  margin-right: 2px;
+}
+
+::ng-deep .product-card .fa-star.text-gray-300 {
+  color: #f3f4f6 !important;
+  filter: none;
+}
+
+// Pagination styles
+::ng-deep .pagination-arrow,
+::ng-deep .pagination-number {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.15rem;
+  border: none;
+  background: linear-gradient(135deg, #fce7f3 0%, #f9a8d4 100%);
+  color: #ec4899;
+  box-shadow: 0 2px 8px rgba(236, 72, 153, 0.10);
+  transition: all 0.22s cubic-bezier(.4,2,.6,1);
+  margin: 0 2px;
+}
+
+::ng-deep .pagination-arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: #f3f4f6;
+  color: #d1d5db;
+}
+
+::ng-deep .pagination-arrow:not(:disabled):hover,
+::ng-deep .pagination-number.pagination-inactive:hover {
+  background: linear-gradient(135deg, #f9a8d4 0%, #f472b6 100%);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+::ng-deep .pagination-number.pagination-active {
+  background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+  color: #fff;
+  font-size: 1.22rem;
+  box-shadow: 0 8px 24px rgba(236, 72, 153, 0.18);
+  transform: scale(1.13);
+  border: 2px solid #fff;
+}
+
+// Responsive grid gap
+@media (max-width: 1024px) {
+  ::ng-deep .grid {
+    gap: 1.5rem !important;
   }
 }

@@ -1,1 +1,76 @@
-<p>contact works!</p>
+<div class="bg-gray-50 p-8 min-h-screen">
+  <div class="max-w-6xl mx-auto bg-white rounded-2xl shadow-2xl p-10">
+    <!-- Header -->
+    <h1 class="text-pink-500 font-bold text-2xl tracking-widest mb-8 animate-bounce">
+      <i class="fas fa-envelope-open-text mr-2"></i> CONTACT US
+    </h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      
+      <!-- Left Side - Contact Info -->
+      <div class="space-y-8">
+        <!-- Call Anytime -->
+        <div class="flex items-start space-x-4 hover:scale-105 transition-transform duration-300">
+          <div class="flex-shrink-0 w-14 h-14 bg-pink-100 rounded-lg flex items-center justify-center border border-pink-300 shadow-md">
+            <i class="fas fa-phone-alt text-pink-500 text-xl"></i>
+          </div>
+          <div>
+            <h3 class="text-pink-500 font-semibold text-lg mb-1">Call Anytime</h3>
+            <p class="text-gray-700">241-373-2123</p>
+          </div>
+        </div>
+        
+        <!-- Send Email -->
+        <div class="flex items-start space-x-4 hover:scale-105 transition-transform duration-300">
+          <div class="flex-shrink-0 w-14 h-14 bg-pink-100 rounded-lg flex items-center justify-center border border-pink-300 shadow-md">
+            <i class="fas fa-envelope text-pink-500 text-xl"></i>
+          </div>
+          <div>
+            <h3 class="text-pink-500 font-semibold text-lg mb-1">Send Email</h3>
+            <p class="text-gray-700">Dwight63gmail.com</p>
+          </div>
+        </div>
+        
+        <!-- Visit Us -->
+        <div class="flex items-start space-x-4 hover:scale-105 transition-transform duration-300">
+          <div class="flex-shrink-0 w-14 h-14 bg-pink-100 rounded-lg flex items-center justify-center border border-pink-300 shadow-md">
+            <i class="fas fa-map-marker-alt text-pink-500 text-xl"></i>
+          </div>
+          <div>
+            <h3 class="text-pink-500 font-semibold text-lg mb-1">Visit Us</h3>
+            <p class="text-gray-700">20 Island Park Road,<br>New Jersey, New York, USA</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Side - Contact Form -->
+      <div>
+        <form (ngSubmit)="contactSubmit()" [formGroup]="contactForm" class="space-y-6">
+          <!-- Name Field -->
+          <input type="text" placeholder="Name" formControlName="name" class="w-full px-4 py-3 border-2 border-pink-300 rounded-[20px] focus:outline-none focus:border-pink-500 shadow-md transition duration-300">
+
+          <!-- Email Field -->
+          <input type="email" placeholder="Email" formControlName="email" class="w-full px-4 py-3 border-2 border-pink-300 rounded-[20px] focus:outline-none focus:border-pink-500 shadow-md transition duration-300">
+
+          <!-- Phone Field -->
+          <input type="tel" placeholder="Phone" formControlName="phone" class="w-full px-4 py-3 border-2 border-pink-300 rounded-[20px] focus:outline-none focus:border-pink-500 shadow-md transition duration-300">
+
+          <!-- Subject Field -->
+          <input type="text" placeholder="Subject" formControlName="subject" class="w-full px-4 py-3 border-2 border-pink-300 rounded-[20px] focus:outline-none focus:border-pink-500 shadow-md transition duration-300">
+
+          <!-- Message Field -->
+          <textarea placeholder="Your Message" formControlName="message" rows="6" class="w-full px-4 py-3 border-2 border-pink-300 rounded-[20px] focus:outline-none focus:border-pink-500 shadow-md resize-none transition duration-300"></textarea>
+
+          <!-- Submit Button -->
+          <button type="submit" class="bg-pink-500 hover:bg-pink-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition-transform duration-300 hover:scale-105 flex items-center space-x-2">
+            <span>Send</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Font Awesome Icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

@@ -1,46 +1,74 @@
-<nav class="navbar bg-base-100 mx-auto w-[95%] shadow-lg">
+<nav class="navbar bg-base-100 mx-auto w-full max-w-7xl shadow-lg">
   <div class="navbar-start">
     <!-- Mobile hamburger menu -->
     <div class="dropdown lg:hidden">
       <div tabindex="0" role="button" class="btn btn-ghost">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-          viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M4 6h16M4 12h8m-8 6h16" />
-        </svg>
+        <i class="fa fa-bars text-xl"></i>
       </div>
       <ul tabindex="0"
         class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        <li><a routerLinkActive="active-link" routerLink="/home">Home</a></li>
-        <li><a routerLinkActive="active-link" routerLink="/allcategorie">All Category</a></li>
-        <li><a routerLinkActive="active-link" routerLink="/about">About</a></li>
-        <li><a routerLinkActive="active-link" routerLink="/contact">Contact</a></li>
+        <li><a routerLinkActive="active-link" routerLink="/home"><i class="fa fa-home"></i> Home</a></li>
+        <li><a routerLinkActive="active-link" routerLink="/allcategory"><i class="fa fa-th-large"></i> All Category</a></li>
+        <li><a routerLinkActive="active-link" routerLink="/about"><i class="fa fa-info-circle"></i> About</a></li>
+        <li><a routerLinkActive="active-link" routerLink="/contact"><i class="fa fa-envelope"></i> Contact</a></li>
       </ul>
     </div>
-
     <!-- Logo -->
-    <a class="btn btn-ghost normal-case text-xl">
-      <img class="w-[84px] h-[84px]" src="/images/Group 3.png" alt="logo" />
+    <a class="btn btn-ghost normal-case text-xl p-0">
+      <img class="logo-img" src="/images/Group 3.png" alt="logo" />
     </a>
   </div>
 
-  <!-- Desktop navigation - FORCED HORIZONTAL LAYOUT -->
+  <!-- Desktop navigation -->
   <div class="navbar-center hidden lg:flex">
-    <ul class="menu menu-horizontal px-1 gap-[2rem] flex flex-row items-center">
-      <li class="flex"><a routerLinkActive="active-link" routerLink="/home">Home</a></li>
-      <li class="flex"><a routerLinkActive="active-link" routerLink="/allcategorie">All Category</a></li>
-      <li class="flex"><a routerLinkActive="active-link" routerLink="/about">About</a></li>
-      <li class="flex"><a routerLinkActive="active-link" routerLink="/contact">Contact</a></li>
+    <ul class="menu menu-horizontal px-1 gap-6 flex flex-row items-center">
+      <li><a routerLinkActive="active-link" routerLink="/home"><i class="fa fa-home"></i> Home</a></li>
+      <li><a routerLinkActive="active-link" routerLink="/allcategory"><i class="fa fa-th-large"></i> All Category</a></li>
+      <li><a routerLinkActive="active-link" routerLink="/about"><i class="fa fa-info-circle"></i> About</a></li>
+      <li><a routerLinkActive="active-link" routerLink="/contact"><i class="fa fa-envelope"></i> Contact</a></li>
     </ul>
   </div>
 
-  <!-- Right side actions -->
-  <div class="navbar-end flex flex-row items-center gap-2">
-    <button class="btn btn-ghost btn-circle">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-      </svg>
-    </button>
-    <button class="btn btn-primary">Login</button>
-  </div>
+  @if (! tokenService.isAuthenticated()) {
+    <div class="navbar-end flex flex-row items-center gap-2">
+    
+      <button class="btn" (click)="openModal()">
+        <i class="fa fa-sign-in-alt mr-2"></i> Login
+      </button>
+      <dialog #modal id="auth_modal" class="modal rounded-[5%]">
+        <div class="modal-backdrop" (click)="closeModal()"></div>
+        <div class="modal-box relative w-auto max-w-md rounded-2xl shadow-xl bg-white p-6 overflow-hidden">
+          <button (click)="closeModal()"
+            class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition">
+            ✕
+          </button>
+          <app-auth (closeModal)="closeModal()"></app-auth>
+        </div>
+      </dialog>
+    </div>
+  }@else{
+    <div class="navbar-end flex flex-row items-center gap-2">
+        <button class="btn btn-ghost btn-circle">
+        <i class="fa fa-search text-lg"></i>
+      </button>
+      <button class="btn btn-ghost btn-circle relative">
+  <i routerLink="/cart" class="fa-solid fa-cart-plus text-2xl"></i>
+
+  @if (cartCount() > 0) {
+    <span
+      class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-md">
+      {{ cartCount() }}
+    </span>
+  }
+</button>
+
+       <button class="btn btn-ghost btn-circle">
+      <i routerLink="/wishlist" class="fas fa-heart"></i>
+      </button>
+    
+      <button routerLink="/updateprofile" class="btn">
+        <i class="fa fa-user-edit mr-2"></i> Profile
+      </button>
+    </div>
+  }
 </nav>
